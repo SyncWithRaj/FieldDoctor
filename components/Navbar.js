@@ -92,7 +92,7 @@ const Navbar = () => {
               after:w-full after:bg-gradient-to-r after:from-yellow-400 after:to-white
               after:transition-transform after:duration-300 after:origin-left
               ${activeSection === 'home' ? 'after:scale-x-100' : 'after:scale-x-0'}
-              hover:after:scale-x-100 py-3 px-4 rounded-md`}
+              hover:after:scale-x-100 py-2 px-3 rounded-md`}
           >
             <Home size={18} /> Home
           </button>
@@ -104,7 +104,7 @@ const Navbar = () => {
               after:w-full after:bg-gradient-to-r after:from-yellow-400 after:to-white
               after:transition-transform after:duration-300 after:origin-left
               ${activeSection === 'weather' ? 'after:scale-x-100' : 'after:scale-x-0'}
-              hover:after:scale-x-100 py-3 px-4 rounded-md`}
+              hover:after:scale-x-100 py-2 px-3 rounded-md`}
           >
             <CloudSun size={18} /> Weather
           </button>
@@ -117,7 +117,7 @@ const Navbar = () => {
               after:w-full after:bg-gradient-to-r after:from-yellow-400 after:to-white
               after:transition-transform after:duration-300 after:origin-left
               ${activeSection === 'about' ? 'after:scale-x-100' : 'after:scale-x-0'}
-              hover:after:scale-x-100 py-3 px-4 rounded-md`}
+              hover:after:scale-x-100 py-2 px-3 rounded-md`}
           >
             <HeartPulse size={18} /> About
           </Link>
