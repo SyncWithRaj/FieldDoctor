@@ -1,13 +1,69 @@
 'use client';
 
+import { useEffect } from 'react';
 import Link from 'next/link';
 import WeatherBox from '@/components/Weatherbox';
 import VoiceAgentWidget from '@/components/VoicecallAgent';
 import dynamic from 'next/dynamic';
 
 const WeatherMap = dynamic(() => import('@/components/WeatherMap'), { ssr: false });
+const sendWhatsAppAlert = async () => {
+  try {
+    // Step 1: Get user's location
+    navigator.geolocation.getCurrentPosition(
+      async (position) => {
+        const { latitude, longitude } = position.coords;
+
+        // Call API to reverse geocode and send weather alert
+        const res = await fetch(`/api/send-whatsapp?lat=${latitude}&lon=${longitude}`);
+        const data = await res.json();
+        console.log(data);
+      },
+      (err) => {
+        console.error('❌ Location error:', err.message);
+      }
+    );
+
+  } catch (err) {
+    console.error('❌ Unexpected error:', err.message);
+  }
+};
+
 
 export default function Home() {
+
+
+  useEffect(() => {
+    const checkWeatherAndAlert = async () => {
+      try {
+        navigator.geolocation.getCurrentPosition(
+          async (position) => {
+            const { latitude, longitude } = position.coords;
+            const res = await fetch(`/api/send-whatsapp?lat=${latitude}&lon=${longitude}`);
+            const data = await res.json();
+            console.log('🌤️ Weather check result:', data);
+
+            // ✅ Trigger only if needed
+            if (data.alertSent) {
+              console.log('📲 WhatsApp alert sent!');
+            } else {
+              console.log('ℹ️ No need to send alert:', data.reason);
+            }
+          },
+          (err) => {
+            console.error('❌ Location access error:', err.message);
+          }
+        );
+      } catch (err) {
+        console.error('❌ Unexpected error in weather alert:', err.message);
+      }
+    };
+
+    checkWeatherAndAlert();
+  }, []);
+
+
+
   return (
     <main className="min-h-screen bg-white text-green-900 font-sans scroll-smooth transition-all duration-500 ease-in-out">
       {/* Voice Agent */}
