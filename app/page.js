@@ -5,6 +5,7 @@ import Link from 'next/link';
 import WeatherBox from '@/components/Weatherbox';
 import VoiceAgentWidget from '@/components/VoicecallAgent';
 import dynamic from 'next/dynamic';
+import { Info } from 'lucide-react';
 
 import { Mic, Lightbulb, CloudSun } from 'lucide-react'; // Icons added
 
@@ -115,6 +116,15 @@ export default function Home() {
             <WeatherBox />
           </div>
           <div className="rounded-3xl bg-white/70 backdrop-blur-lg p-6 shadow-lg border border-green-100">
+            {/* Instruction Banner */}
+            {/* Instruction Banner with Icon */}
+            <div className="flex items-center gap-2 bg-green-50 text-green-800 border-b border-green-200 px-6 py-3 text-sm sm:text-base font-medium shadow-sm animate-fade-in-down justify-center">
+              <Info className="w-4 h-4 text-green-600" />
+              <span>
+                Click on the map to get weather info of that place. Hover to preview details instantly.
+              </span>
+            </div>
+
             <WeatherMap />
           </div>
         </div>
