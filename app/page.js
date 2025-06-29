@@ -7,7 +7,13 @@ import VoiceAgentWidget from '@/components/VoicecallAgent';
 import dynamic from 'next/dynamic';
 import { Info } from 'lucide-react';
 import { Poppins } from 'next/font/google';
-import { Mic, Lightbulb, CloudSun, AlertCircle } from 'lucide-react'; // Icons added
+import {
+  Mic, Lightbulb, CloudSun, AlertCircle, Linkedin,
+  Instagram,
+  Twitter,
+  Github,
+  Globe,
+} from 'lucide-react';
 
 const poppins = Poppins({
   weight: ['400', '600', '700'],
@@ -145,8 +151,8 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-green-800 text-white py-6 px-4 text-center text-sm sm:text-base border-t border-green-300">
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-2">
+      <footer className="bg-green-800 text-white py-6 px-4 text-center text-sm sm:text-base border-t border-green-300 flex justify-around">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-2 mb-3">
           <span className="opacity-90">
             &copy; {new Date().getFullYear()} <strong>Field Doctor</strong>
           </span>
@@ -154,6 +160,53 @@ export default function Home() {
           <span className="opacity-90">
             Made with ❤️ for <span className="text-yellow-300 font-medium">Farmers</span> 🇮🇳
           </span>
+        </div>
+        <div className="flex items-center justify-center gap-6">
+          <a
+            href="https://www.linkedin.com/in/raj-ribadiya/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            className="hover:text-yellow-300 transition-colors duration-200"
+          >
+            <Linkedin size={25} />
+          </a>
+          <a
+            href="https://instagram.com/ribadiya_raj"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+            className="hover:text-yellow-300 transition-colors duration-200"
+          >
+            <Instagram size={25} />
+          </a>
+          <a
+            href="https://twitter.com/ribadiya_rajj"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="X Twitter"
+            className="hover:text-yellow-300 transition-colors duration-200"
+          >
+            <Twitter size={25} />
+          </a>
+          <a
+            href="https://github.com/SyncWithRaj"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            className="hover:text-yellow-300 transition-colors duration-200"
+          >
+            <Github size={25} />
+          </a>
+          <a
+            href="https://raj-ribadiya.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Website"
+            className="hover:text-yellow-300 transition-colors duration-200"
+          >
+            <Globe size={25} />
+          </a>
         </div>
       </footer>
     </main>
