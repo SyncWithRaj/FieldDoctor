@@ -1,4 +1,6 @@
 @import "tailwindcss";
+/* globals.css */
+@import "leaflet/dist/leaflet.css";
 
 :root {
   --background: #ffffff;
@@ -67,4 +69,31 @@ body {
 
 .animate-fade-in-down {
   animation: fade-in-down 0.6s ease-out;
+}
+
+/* ===== Custom Scrollbar ===== */
+
+/* Webkit (Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ecfdf5; /* light green */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #047857; /* dark green */
+  border-radius: 6px;
+  border: 2px solid #ecfdf5;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #065f46;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #047857 #ecfdf5;
 }
