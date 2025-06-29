@@ -6,6 +6,12 @@ import WeatherBox from '@/components/Weatherbox';
 import VoiceAgentWidget from '@/components/VoicecallAgent';
 import dynamic from 'next/dynamic';
 import { Info } from 'lucide-react';
+import { Poppins } from 'next/font/google';
+
+const poppins = Poppins({
+  weight: ['400', '600', '700'],
+  subsets: ['latin'],
+});
 
 import { Mic, Lightbulb, CloudSun } from 'lucide-react'; // Icons added
 
@@ -46,7 +52,10 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen pt-16 bg-gradient-to-br from-green-50 via-white to-green-100 text-green-900 font-sans scroll-smooth transition-all duration-500 ease-in-out">
+    <main
+      className={`${poppins.className} min-h-screen pt-16 bg-gradient-to-br from-green-50 via-white to-green-100 text-green-900 font-sans scroll-smooth transition-all duration-500 ease-in-out`}
+    >
+
       <VoiceAgentWidget />
 
       {/* Hero */}
@@ -55,12 +64,12 @@ export default function Home() {
           <h1 className="text-5xl sm:text-6xl font-extrabold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-green-700 to-green-900 drop-shadow-lg animate-fade-in-down">
             🌾 Welcome to <span className="underline decoration-green-600">Field Doctor</span>
           </h1>
-          <p className="text-xl sm:text-2xl max-w-3xl mx-auto text-green-800 mb-6 animate-fade-in-up">
+          <p className="text-md sm:text-xl max-w-3xl mx-auto text-green-800 mb-6 animate-fade-in-up">
             Your personal crop health assistant - Get instant AI-powered solutions by just speaking in your Native language. and you can see weather info around world and get weather alerts when seems like rain.
           </p>
           <Link href="/">
             <button onClick={(e) => handleScrollClick(e, 'weather-section')} className="mt-6 bg-green-700 hover:bg-green-900 text-white text-lg px-8 py-3 rounded-full font-semibold shadow-lg transform hover:scale-105 transition">
-              See Weather Info
+              See Weather Info around you
             </button>
           </Link>
         </div>
@@ -69,13 +78,14 @@ export default function Home() {
 
       {/* How It Works */}
       <section className="py-24 px-6 bg-white text-center border-t border-green-200">
-        <h2 className="text-4xl font-bold text-green-900 mb-12 animate-fade-in-up">How It Works</h2>
+
+        <h2 className="text-5xl font-bold text-green-900 mb-12 animate-fade-in-up">How It Works</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-6xl mx-auto">
           {[
             {
               icon: <Mic size={40} strokeWidth={2.2} className="text-green-700 mx-auto mb-4" />,
               title: 'Speak Naturally',
-              desc: 'Just describe your crop problems in your own words. No typing needed.',
+              desc: 'Just describe your crop problems in your own words. No typing needed. AI speak in your Native language',
             },
             {
               icon: <Lightbulb size={40} strokeWidth={2.2} className="text-green-700 mx-auto mb-4" />,
@@ -84,8 +94,8 @@ export default function Home() {
             },
             {
               icon: <CloudSun size={40} strokeWidth={2.2} className="text-green-700 mx-auto mb-4" />,
-              title: 'Smart & Local',
-              desc: 'Your solution is customized with real-time weather inputs.',
+              title: 'Weather Info',
+              desc: 'You can track weather info world-wide. just to hover on world map and get more weather info of specific place by click on it',
             },
           ].map((item, i) => (
             <div
@@ -105,7 +115,7 @@ export default function Home() {
         id="weather-section"
         className="py-24 px-6 bg-gradient-to-tr from-green-100 to-white text-center border-t border-green-200 scroll-mt-24"
       >
-        <h2 className="text-4xl font-semibold mb-4 text-green-900 animate-fade-in-down">
+        <h2 className="text-5xl font-bold mb-4 text-green-900 animate-fade-in-down">
           Live Weather Info
         </h2>
         <p className="text-green-700 max-w-xl mx-auto text-lg mb-10 animate-fade-in-up">

@@ -4,8 +4,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Poppins } from 'next/font/google';
-import { Home, CloudSun, Menu, X } from 'lucide-react';
-import { HeartPulse, Leaf } from 'lucide-react';
+import { Home, CloudSun, Menu, X, HeartPulse, Leaf } from 'lucide-react';
 
 const poppins = Poppins({
   weight: ['400', '600', '700'],
@@ -21,6 +20,10 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
+      if (pathname === '/about') {
+        setActiveSection('about');
+        return;
+      }
       const weatherEl = document.getElementById('weather-section');
       if (weatherEl) {
         const top = weatherEl.getBoundingClientRect().top;
@@ -32,12 +35,13 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll);
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [pathname]);
 
   const handleScrollClick = (e, id) => {
     e.preventDefault();
     setMenuOpen(false);
     if (id === 'home') {
+      router.push('/');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       const el = document.getElementById(id);
@@ -47,8 +51,9 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed w-full top-0 z-50 transition-all duration-500 ${scrolled ? 'bg-green-700/90 backdrop-blur-xs shadow-md' : 'bg-green-700'
-        }`}
+      className={`fixed w-full top-0 z-50 transition-all duration-500 ${
+        scrolled ? 'bg-green-700/90 backdrop-blur-xs shadow-md' : 'bg-green-700'
+      }`}
     >
       <div className="max-w-6xl mx-auto flex justify-between items-center px-4 py-3 sm:py-4">
         {/* Logo */}
@@ -62,8 +67,6 @@ const Navbar = () => {
           </span>
         </div>
 
-
-
         {/* Hamburger */}
         <button
           className="sm:hidden text-white text-2xl focus:outline-none"
@@ -74,8 +77,9 @@ const Navbar = () => {
 
         {/* Nav Links */}
         <div
-          className={`${menuOpen ? 'flex' : 'hidden'
-            } sm:flex flex-col sm:flex-row gap-6 items-center absolute sm:static top-16 left-0 w-full sm:w-auto bg-green-700 sm:bg-transparent p-4 sm:p-0 z-40 sm:z-auto text-white text-sm sm:text-base font-medium transition-all duration-300`}
+          className={`sm:flex flex-col sm:flex-row gap-6 items-center absolute sm:static top-16 left-0 w-full sm:w-auto bg-green-800/95 sm:bg-transparent p-6 sm:p-0 z-40 sm:z-auto text-white text-sm sm:text-base font-medium transition-all duration-300 ease-in-out origin-top transform ${
+            menuOpen ? 'scale-y-100 opacity-100 visible' : 'scale-y-0 opacity-0 invisible'
+          } sm:scale-y-100 sm:opacity-100 sm:visible`}
         >
           <button
             onClick={(e) => handleScrollClick(e, 'home')}
@@ -100,6 +104,19 @@ const Navbar = () => {
           >
             <CloudSun size={18} /> Weather
           </button>
+
+          <Link
+            href="/about"
+            onClick={() => setMenuOpen(false)}
+            className={`${poppins.className} flex items-center gap-2 relative cursor-pointer transition-all duration-300 hover:opacity-90
+              after:absolute after:left-0 after:bottom-0 after:h-[2px]
+              after:w-full after:bg-gradient-to-r after:from-yellow-400 after:to-white
+              after:transition-transform after:duration-300 after:origin-left
+              ${activeSection === 'about' ? 'after:scale-x-100' : 'after:scale-x-0'}
+              hover:after:scale-x-100`}
+          >
+            <HeartPulse size={18} /> About
+          </Link>
         </div>
       </div>
     </nav>
