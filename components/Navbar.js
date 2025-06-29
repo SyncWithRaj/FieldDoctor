@@ -71,15 +71,19 @@ const Navbar = () => {
         <button
           className="sm:hidden text-white text-2xl focus:outline-none"
           onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
         >
           {menuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
 
         {/* Nav Links */}
         <div
-          className={`sm:flex flex-col sm:flex-row gap-6 items-center absolute sm:static top-16 left-0 w-full sm:w-auto bg-green-800/95 sm:bg-transparent p-6 sm:p-0 z-40 sm:z-auto text-white text-sm sm:text-base font-medium transition-all duration-300 ease-in-out origin-top transform ${
-            menuOpen ? 'scale-y-100 opacity-100 visible' : 'scale-y-0 opacity-0 invisible'
+          className={`sm:flex flex-col sm:flex-row gap-6 items-center absolute sm:static top-16 left-0 w-full sm:w-auto bg-green-800/95 sm:bg-transparent p-6 sm:p-0 z-40 sm:z-auto text-white text-sm sm:text-base font-medium transition-transform duration-300 ease-in-out origin-top transform ${
+            menuOpen
+              ? 'scale-y-100 opacity-100 visible shadow-lg rounded-b-md'
+              : 'scale-y-0 opacity-0 invisible'
           } sm:scale-y-100 sm:opacity-100 sm:visible`}
+          style={{ transformOrigin: 'top' }}
         >
           <button
             onClick={(e) => handleScrollClick(e, 'home')}
@@ -88,7 +92,7 @@ const Navbar = () => {
               after:w-full after:bg-gradient-to-r after:from-yellow-400 after:to-white
               after:transition-transform after:duration-300 after:origin-left
               ${activeSection === 'home' ? 'after:scale-x-100' : 'after:scale-x-0'}
-              hover:after:scale-x-100`}
+              hover:after:scale-x-100 py-3 px-4 rounded-md`}
           >
             <Home size={18} /> Home
           </button>
@@ -100,7 +104,7 @@ const Navbar = () => {
               after:w-full after:bg-gradient-to-r after:from-yellow-400 after:to-white
               after:transition-transform after:duration-300 after:origin-left
               ${activeSection === 'weather' ? 'after:scale-x-100' : 'after:scale-x-0'}
-              hover:after:scale-x-100`}
+              hover:after:scale-x-100 py-3 px-4 rounded-md`}
           >
             <CloudSun size={18} /> Weather
           </button>
@@ -113,7 +117,7 @@ const Navbar = () => {
               after:w-full after:bg-gradient-to-r after:from-yellow-400 after:to-white
               after:transition-transform after:duration-300 after:origin-left
               ${activeSection === 'about' ? 'after:scale-x-100' : 'after:scale-x-0'}
-              hover:after:scale-x-100`}
+              hover:after:scale-x-100 py-3 px-4 rounded-md`}
           >
             <HeartPulse size={18} /> About
           </Link>

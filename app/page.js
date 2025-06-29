@@ -7,13 +7,13 @@ import VoiceAgentWidget from '@/components/VoicecallAgent';
 import dynamic from 'next/dynamic';
 import { Info } from 'lucide-react';
 import { Poppins } from 'next/font/google';
+import { Mic, Lightbulb, CloudSun, AlertCircle } from 'lucide-react'; // Icons added
 
 const poppins = Poppins({
   weight: ['400', '600', '700'],
   subsets: ['latin'],
 });
 
-import { Mic, Lightbulb, CloudSun } from 'lucide-react'; // Icons added
 
 const WeatherMap = dynamic(() => import('@/components/WeatherMap'), { ssr: false });
 
@@ -53,7 +53,7 @@ export default function Home() {
 
   return (
     <main
-      className={`${poppins.className} min-h-screen pt-16 bg-gradient-to-br from-green-50 via-white to-green-100 text-green-900 font-sans scroll-smooth transition-all duration-500 ease-in-out`}
+      className={`${poppins.className} min-h-screen pt-16 bg-gradient-to-br from-green-200 via-white to-green-300 text-green-900 font-sans scroll-smooth transition-all duration-500 ease-in-out`}
     >
 
       <VoiceAgentWidget />
@@ -67,6 +67,10 @@ export default function Home() {
           <p className="text-md sm:text-xl max-w-3xl mx-auto text-green-800 mb-6 animate-fade-in-up">
             Your personal crop health assistant - Get instant AI-powered solutions by just speaking in your Native language. and you can see weather info around world and get weather alerts when seems like rain.
           </p>
+          <div className='flex justify-center gap-1'>
+            <AlertCircle className="text-green-600 drop-shadow-glow" size={18} />
+            <p> click bottom-right to start conversation with AI</p>
+          </div>
           <Link href="/">
             <button onClick={(e) => handleScrollClick(e, 'weather-section')} className="mt-6 bg-green-700 hover:bg-green-900 text-white text-lg px-8 py-3 rounded-full font-semibold shadow-lg transform hover:scale-105 transition">
               See Weather Info around you
